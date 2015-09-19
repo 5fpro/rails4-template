@@ -20,20 +20,24 @@
 #  unconfirmed_email      :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  admin                  :boolean          default(FALSE)
+#  avatar                 :string
 #
 
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
   let(:user){ FactoryGirl.create :user }
-  
+
   it "FactoryGirl" do
     expect(user).not_to be_new_record
+    expect( FactoryGirl.create(:user_with_avatar).avatar.url ).to be_present
   end
 
   it "devise async" do
     expect{
-      user
+      FactoryGirl.create :unconfirmed_user
     }.to change_sidekiq_jobs_size_of(Devise::Async::Backend::Sidekiq)
   end
+
 end
