@@ -61,7 +61,7 @@ group :development do
   # unicorn
   gem 'capistrano3-unicorn'
   # slack
-  gem 'slackistrano', require: false
+  gem 'slackistrano'
 
   gem 'guard-annotate'
   gem 'annotate'
