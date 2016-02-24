@@ -8,6 +8,13 @@ Rails.application.routes.draw do
   Setting.omniauth.providers.keys.each do |provider|
     get "/authorizations/#{provider}", as: "auth_#{provider}"
   end
+  
+  constraints(Subdomain) do
+    get '/' => 'sites#show'
+  end 
+
+  resources :sites, only: [:show, :edit]
+  
 
   root to: "base#index"
   get '/robots.txt', to: "base#robots", defaults: { format: "text" }
@@ -23,5 +30,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :sites, only: [:show, :edit]
+  
+  
 end
