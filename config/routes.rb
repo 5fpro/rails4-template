@@ -13,9 +13,13 @@ Rails.application.routes.draw do
     get '/' => 'sites#show'
     get '/edit' => 'sites#edit'
   end 
-
+   
   resources :sites, only: [:show, :edit]
-  
+
+  scope :path => "(:locale)" do
+    resources :sites
+  end
+
 
   root to: "base#index"
   get '/robots.txt', to: "base#robots", defaults: { format: "text" }
