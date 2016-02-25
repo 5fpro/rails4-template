@@ -14,6 +14,10 @@ Rails.application.routes.draw do
     get '/edit' => 'sites#edit'
   end
 
+  scope :path => "(:locale)" do
+    resources :sites
+  end
+
   root to: "base#index"
   get '/robots.txt', to: "base#robots", defaults: { format: "text" }
 
