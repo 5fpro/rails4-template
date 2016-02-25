@@ -24,6 +24,7 @@ class SitesController < ApplicationController
   def find_site
   	case request.host
     when "www.#{Setting.host}", Setting.host, nil
+    	@site = Site.find(params[:id])
     else     
       if request.host.index(Setting.host)
         @site = Site.find_by_subdomain(request.host.split('.').first)

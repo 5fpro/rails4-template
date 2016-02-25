@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   
   constraints(Subdomain) do
     get '/' => 'sites#show'
+    get '/edit' => 'sites#edit'
   end 
 
   resources :sites, only: [:show, :edit]
