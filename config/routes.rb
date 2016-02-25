@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     get "/authorizations/#{provider}", as: "auth_#{provider}"
   end
 
+  constraints(Subdomain) do
+    get '/' => 'sites#show'
+    get '/edit' => 'sites#edit'
+  end
+
   root to: "base#index"
   get '/robots.txt', to: "base#robots", defaults: { format: "text" }
 
