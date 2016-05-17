@@ -12,7 +12,8 @@
 #
 
 class SitesController < ApplicationController
-  before_action :find_site
+  before_filter :find_subdomain_site, :only => :show
+
   def show
   end
 
@@ -21,7 +22,10 @@ class SitesController < ApplicationController
 
   private
 
-  def find_site
-    @site = Site.find(params[:id])
+
+  def find_subdomain_site
+
+    @site = Site.find_by_subdomain(request.host.split('.').first)
   end
+
 end
