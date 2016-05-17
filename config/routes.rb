@@ -24,4 +24,9 @@ Rails.application.routes.draw do
   end
 
   resources :sites, only: [:show, :edit]
+
+  scope "/:locale" do
+    resources :sites
+  end
+
 end
