@@ -15,6 +15,7 @@ class SitesController < ApplicationController
   before_filter :find_subdomain_site, :only => :show
 
   def show
+    @site? true : (render :file => "#{Rails.root}/public/404.html",  :status => 404)
   end
 
   def edit
