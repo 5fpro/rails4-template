@@ -18,9 +18,7 @@ RSpec.describe SitesController, type: :request do
 
   describe "#show" do
     before { get "/sites/#{site.id}" }
-    it "aaa" do
-    end
-     # { expect(response).to be_success }
+    it { expect(response).to be_success }
   end
 
   describe "#edit" do
