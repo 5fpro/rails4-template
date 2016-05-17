@@ -1,0 +1,15 @@
+  <h1> index </h1>
+<% @sites.each do |sites| %>
+  <%= sites.id %>
+  <%= sites.name %>
+  <%= sites.host %>
+  <%= sites.subdomain %>
+
+  <%= link_to "詳細資料", root_url(:subdomain => sites.subdomain) %>
+  <%= link_to "修改", edit_site_path(sites)%>
+  <%= link_to "刪除", site_path(sites), :method => :delete%>
+     <br/>
+<% end %>
+
+
+<%= link_to 'new',new_site_path %>

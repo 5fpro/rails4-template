@@ -1,0 +1,11 @@
+<h2> New </h2>
+
+<%= form_for @site, :url => sites_path do |s| %>
+
+    <%= render :partial => "form", :locals => { :s => s} %>
+
+    <%= s.submit "創立" %>
+
+<% end %>
+
+<p><%= link_to '回到index', sites_path %></p>
