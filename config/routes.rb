@@ -1,5 +1,11 @@
 require 'sidekiq/web'
+require 'subdomain'
 Rails.application.routes.draw do
+  constraints(Subdomain) do
+    get '/' => 'sites#show'
+
+    resources :sites
+  end
   mount Sidekiq::Web => '/sidekiq'
 
   devise_for :users
