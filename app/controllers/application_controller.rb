@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include MetaTagHelper
 
-  before_action :http_auth_for_staging
+  before_action :http_auth_for_staging, :set_locale
 
   def default_url_options
     # SUPPORT: SSL
@@ -20,4 +20,14 @@ class ApplicationController < ActionController::Base
       username == "myapp" && password == "myapp"
     end
   end
+
+  def set_locale
+  # 可以將 ["en", "zh-TW"] 設定為 VALID_LANG 放到 config/environment.rb 中
+  if params[:locale] && I18n.available_locales.include?( params[:locale].to_sym )
+    session[:locale] = params[:locale]
+  end
+
+  I18n.locale = session[:locale] || I18n.default_locale
+  end
+
 end

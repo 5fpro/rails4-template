@@ -12,9 +12,10 @@
 #
 
 class SitesController < ApplicationController
-  # before_action :find_site
+  before_action :find_site
   before_filter :find_subdomain
   def show
+    # @site = Site.find(params[:id])
     # if @site.host
     #   redirect_to "http://#{@site.host}/"
     # else
@@ -28,9 +29,9 @@ class SitesController < ApplicationController
 
   private
 
-  # def find_site
-  #   @site = Site.find(params[:id])
-  # end
+  def find_site
+    @site = Site.find(params[:id])
+  end
 
   def find_subdomain
     case request.host
