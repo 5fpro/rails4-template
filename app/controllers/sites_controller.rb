@@ -22,6 +22,21 @@ class SitesController < ApplicationController
   private
 
   def find_site
-    @site = Site.find(params[:id])
+
+    case request.host
+    when "www.#{Setting.host}", Setting.host, nil
+      @site = Site.find(params[:id])
+    else
+      if request.host.index(Setting.host)
+        @site = Site.find_by_subdomain(request.host.split('.').first)
+      else
+        @site = Site.find_by_host(request.host)
+      end
+
+      if !@site
+        render :file => "#{Rails.root}/public/404.html",  :status => 404
+      end
+    end
   end
+
 end

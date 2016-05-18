@@ -138,3 +138,5 @@ gem 'bootstrap-sass', '~> 2.3'
 gem 'crummy'
 gem 'meta-tags', require: 'meta_tags'
 gem 'sitemap_generator'
+
+gem 'rails-i18n'
