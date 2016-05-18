@@ -5,7 +5,10 @@
   <%= sites.host %>
   <%= sites.subdomain %>
 
-  <%= link_to "詳細資料", root_url(:subdomain => sites.subdomain) %>
+  <%= link_to "link_to_subdomain", root_url(:subdomain => sites.subdomain) %>
+  <%= link_to "link_to_host", root_url(:host => sites.host) %>
+
+
   <%= link_to "修改", edit_site_path(sites)%>
   <%= link_to "刪除", site_path(sites), :method => :delete%>
      <br/>

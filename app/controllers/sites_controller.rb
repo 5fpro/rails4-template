@@ -38,16 +38,13 @@ class SitesController < ApplicationController
   end
 
   def show
-
-     redirect_to @site.host
-
   end
 
   def update
     if @site.update(site_params)
       redirect_to sites_path
     else
-      render :action => :update
+      redirect_to site_path
     end
   end
 
