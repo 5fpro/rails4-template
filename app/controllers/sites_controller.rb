@@ -12,7 +12,7 @@
 #
 
 class SitesController < ApplicationController
-  before_action :find_site
+  before_action :find_site, :only => [:show]
   before_filter :find_subdomain
   def show
     # @site = Site.find(params[:id])
@@ -30,7 +30,7 @@ class SitesController < ApplicationController
   private
 
   def find_site
-    @site = Site.find(params[:id])
+    @site = Site.find_by_subdomain(request.host.split('.').first) || Site.find_by(params[:id])
   end
 
   def find_subdomain
@@ -38,7 +38,12 @@ class SitesController < ApplicationController
     when "www.#{Setting.host}", Setting.host, nil
     else     
       if request.host.index(Setting.host)
-        @current_site = Site.find_by_subdomain(request.host.split('.').first)
+        if Site.find_by_subdomain(request.host.split('.').first)
+          @current_site = Site.find_by_subdomain(request.host.split('.').first)      
+        else
+          @current_site = Site.find_by_host(request.host)
+        end
+
       else
         @current_site = Site.find_by_fqdn(request.host)
       end
