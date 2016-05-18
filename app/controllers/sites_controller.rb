@@ -1,0 +1,61 @@
+# == Schema Information
+#
+# Table name: sites
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  host       :string
+#  subdomain  :string
+#  data       :hstore
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+class SitesController < ApplicationController
+  before_action :find_site, :only => [:show]
+  before_filter :find_subdomain
+  def show
+    # @site = Site.find(params[:id])
+    # if @site.host
+    #   redirect_to "http://#{@site.host}/"
+    # else
+    #   render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+    # end
+   
+  end
+
+  def edit
+  end
+
+  private
+
+  def find_site
+    @site = Site.find_by_subdomain(request.host.split('.').first) || Site.find_by(params[:id])
+  end
+
+  def find_subdomain
+    case request.host
+    when "www.#{Setting.host}", Setting.host, nil
+    else     
+      if request.host.index(Setting.host)
+        if Site.find_by_subdomain(request.host.split('.').first)
+          @current_site = Site.find_by_subdomain(request.host.split('.').first)      
+        else
+          @current_site = Site.find_by_host(request.host)
+        end
+
+      else
+        @current_site = Site.find_by_fqdn(request.host)
+      end
+      
+      if !@current_site
+        render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+      end
+     
+
+    end  
+  end
+
+
+
+end
