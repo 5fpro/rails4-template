@@ -12,7 +12,11 @@
 #
 
 class SitesController < ApplicationController
-  before_action :find_site
+  before_action :find_site_subdomain_custom_domain
+  before_action :find_site, :only => [:show]
+
+
+
   def show
   end
 
@@ -22,6 +26,30 @@ class SitesController < ApplicationController
   private
 
   def find_site
-    @site = Site.find(params[:id])
+    @site = Site.find_by_subdomain(request.host.split('.').first)||Site.find_by_host(request.host)
   end
+
+  def find_site_subdomain_custom_domain
+    case request.host
+    when "www.#{Setting.host}", Setting.host, nil
+    else
+      if request.host.index(Setting.host)
+        puts 'subdomain'
+        @current_site = Site.find_by_subdomain(request.host.split('.').first)
+
+        if @current_site == nil
+          puts 'host'
+          @current_site = Site.find_by_host(request.host)
+        end
+      end
+
+      if !@current_site
+          puts '404'
+        render :file => "#{Rails.root}/public/404.html",  :status => 404
+
+      end
+    end
+  end
+
+
 end

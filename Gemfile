@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 gem 'rails', '4.2.5.1'
-
+gem 'local-subdomain'
 # DB
 gem 'pg'
 gem 'activerecord-postgis-adapter'
@@ -24,7 +24,6 @@ gem 'nested_form'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'therubyracer', platforms: :ruby
 gem 'asset_sync'
 
 # JS plugin
