@@ -12,9 +12,10 @@
 #
 
 class SitesController < ApplicationController
-  before_filter :find_subdomain_site, :only => :show
+  # before_filter :find_subdomain_site, :only => :show
 
   def show
+    @site = Site.find_by_subdomain(request.host.split('.').first)
     @site? true : (render :file => "#{Rails.root}/public/404.html",  :status => 404)
   end
 
@@ -24,9 +25,9 @@ class SitesController < ApplicationController
   private
 
 
-  def find_subdomain_site
+  # def find_subdomain_site
 
-    @site = Site.find_by_subdomain(request.host.split('.').first)
-  end
+  #   @site = Site.find_by_subdomain(request.host.split('.').first)
+  # end
 
 end

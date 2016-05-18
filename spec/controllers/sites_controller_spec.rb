@@ -15,10 +15,11 @@ require 'rails_helper'
 
 RSpec.describe SitesController, type: :request do
   let(:site) { FactoryGirl.create :site }
+  let(:site) {Site.new(:name => "qwe", :subdomain => "abcd", :host => "www.appwe.com")}
 
-  describe "#show" do
-    before { get "/sites/#{site.id}" }
-    it { expect(response).to be_success }
+  describe "GET site/show" do
+    before { get "/" }
+    it { expect(response).to render_template(:show)}
   end
 
   describe "#edit" do
