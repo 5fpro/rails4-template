@@ -1,10 +1,5 @@
 class Subdomain
   def self.matches?(request)
-    case request.host
-    when Setting.host, "www.#{Setting.host}", nil
-      false
-    else
-      true
-    end
+    request.host && request.host == "localhost"? false : true
   end
 end
