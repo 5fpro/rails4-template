@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     get '/edit' => 'sites#edit'
   end
 
+  scope "/:locale" do
+    resources :sites
+  end
+
   mount Sidekiq::Web => '/sidekiq'
 
   devise_for :users
@@ -32,8 +36,6 @@ Rails.application.routes.draw do
 
   resources :sites, only: [:show, :edit]
 
-  scope "/:locale" do
-    resources :sites
-  end
+
 
 end
