@@ -28,7 +28,9 @@ Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
 
 require 'capistrano3/unicorn'
 # require 'capistrano/sidekiq/monit' #to require monit tasks (V0.2.0+)
-require 'slackistrano/capistrano'
+
+require 'capistrano/slackistrano'
+
 require 'capistrano/sidekiq'
 require 'whenever/capistrano'
 require 'rollbar/capistrano3'
