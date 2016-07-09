@@ -76,7 +76,7 @@ ALTER USER "your_name" WITH SUPERUSER;
 First Use This Template App
 ================================
 
-- `rails g rename:app_to your_new_app_name`
+- `rails generate rename:app_to your_new_app_name`
 - configs
   - config/application.yml
   - config/database.yml
