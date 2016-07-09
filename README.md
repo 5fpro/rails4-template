@@ -76,7 +76,6 @@ ALTER USER "your_name" WITH SUPERUSER;
 First Use This Template App
 ================================
 
-- search keywords `myapp` & `Myapp` and replace to your new name.
 - configs
   - config/application.yml
   - config/database.yml
