@@ -20,7 +20,7 @@ class Site < ActiveRecord::Base
 
   before_validation :generate_subdomain
 
-  has_many :pages, dependent: :destroy
+  has_many :pages
 
   private
 
