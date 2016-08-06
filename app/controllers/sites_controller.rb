@@ -19,7 +19,7 @@ class SitesController < ApplicationController
   end
 
   def show
-
+    @pages = @site.pages.all
   end
 
   def edit

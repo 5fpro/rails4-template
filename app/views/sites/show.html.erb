@@ -1,5 +1,31 @@
+<%= link_to "back to sites", sites_path %>
+<hr>
 <%= "Name : #{@site.name}" %><br>
 <%= "Host : #{@site.host}" %><br>
 <%= "SubDomain : #{@site.subdomain}" %><br>
 
-<%= link_to "back to sites", sites_path %>
+<br>
+
+<%= link_to "New Page", new_site_page_path(@site) %>
+
+<br>
+
+<table>
+  <thead>
+    <th>Title</th>
+    <th>Body</th>
+    <th>Slug</th>
+  </thead>
+  <tbody>
+    <% @pages.each do |page| %>
+      <tr>
+        <td><%= page.title %></td>
+        <td><%= page.body %></td>
+        <td><%= page.slug %></td>
+        <td><%= link_to "show", site_page_path(@site, page) %></td>
+        <td><%= link_to "edit", edit_site_page_path(@site, page) %></td>
+        <td><%= link_to "delete", site_page_path(@site, page), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
