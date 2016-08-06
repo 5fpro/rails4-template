@@ -16,4 +16,22 @@ RSpec.describe Api::SitesController, type: :request do
       expect(response.status).to eq(200)
     end
   end
+
+  describe "#create" do
+
+    let(:site_index) do
+      get "/api/sites.json"
+      JSON.parse(response.body)
+    end
+
+    it "should get 1 data after create site" do
+
+      post "/api/sites", :site => { :name => "AA", :host => "BB", :subdomain => "CC", :data => "DD"}
+
+      expect(site_index["sites"].size).to be(1)
+
+    end
+
+
+  end
 end
