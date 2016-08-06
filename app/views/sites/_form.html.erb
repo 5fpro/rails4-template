@@ -1,0 +1,18 @@
+<% if @site.errors.any? %>
+  <ul>
+    <% @site.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class="form-group">
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name %>
+</div>
+
+<div class="form-group">
+  <%= f.label :host, "Host" %>
+  <%= f.text_field :host %>
+</div>
+

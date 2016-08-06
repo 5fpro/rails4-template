@@ -24,5 +24,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :sites do
+    resources :pages
+  end
+
   resources :sites, only: [:show, :edit]
 end
