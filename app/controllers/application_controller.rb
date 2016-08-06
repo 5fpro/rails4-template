@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   def default_url_options
     # SUPPORT: SSL
     # { protocol: "https" }
-    {}
+
   end
 
   private
@@ -20,5 +20,9 @@ class ApplicationController < ActionController::Base
     authenticate_or_request_with_http_basic do |username, password|
       username == "myapp" && password == "myapp"
     end
+  end
+
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
   end
 end
