@@ -15,8 +15,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     root to: "base#index"
-    resources :sites
+    resources :sites, only: [:create, :update, :destroy]
   end
+
+
 
   namespace :admin do
     root to: "base#index"
