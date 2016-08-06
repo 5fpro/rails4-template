@@ -8,6 +8,11 @@
 #  slug       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  site_id    :integer
+#
+# Foreign Keys
+#
+#  fk_rails_a8ad97ecff  (site_id => sites.id)
 #
 
 class Page < ActiveRecord::Base

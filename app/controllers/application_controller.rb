@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   def default_url_options
     # SUPPORT: SSL
     # { protocol: "https" }
-    {}
+
   end
 
   private

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160806105125) do
+ActiveRecord::Schema.define(version: 20160806133205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,7 +50,10 @@ ActiveRecord::Schema.define(version: 20160806105125) do
     t.string   "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "site_id"
   end
+
+  add_index "pages", ["site_id"], name: "index_pages_on_site_id", using: :btree
 
   create_table "sites", force: :cascade do |t|
     t.string   "name"
@@ -117,4 +120,5 @@ ActiveRecord::Schema.define(version: 20160806105125) do
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
+  add_foreign_key "pages", "sites"
 end
