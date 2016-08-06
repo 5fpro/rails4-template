@@ -6,3 +6,5 @@
   - Setting.omniauth.providers.keys.each do |provider|
     br/
     = link_to "#{provider} login", send("auth_#{provider}_path")
+br/
+= link_to "Go To Site Index", sites_path
