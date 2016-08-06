@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 before_action :set_site
 
   def show
-
+    @page = @site.pages.find(params[:id])
   end
 
   def new

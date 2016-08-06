@@ -1,0 +1,22 @@
+<p>Site:<%= @site.name%></p>
+
+<table class="table">
+  <tr>
+    <td>Title</td>
+    <td>Body</td>
+    <td>Slug</td>
+  </tr>
+  <% @site.pages.each do |c|%>
+    <tr>
+      <td><%= c.title %></td>
+      <td><%= c.body %></td>
+      <td><%= c.slug %></td>
+      <td><%= link_to "Edit", edit_site_page_path(@site, c), :class => "btn btn-primary"%></td>
+      <td><%= link_to "Delete", site_page_path(@site, c), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "Are you sure?"} %></td>
+      <%end%>
+    </tr>
+  <%end%>
+</table>
+
+
+<%= link_to "Back to Index", sites_path %>

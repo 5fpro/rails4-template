@@ -1,0 +1,23 @@
+<%= link_to "New Site", new_site_path %>
+
+<table class="table">
+
+  <tr>
+    <td>Name</td>
+    <td>Host</td>
+    <td>SubDomain</td>
+  </tr>
+
+  <% @sites.each do |site|%>
+
+    <tr>
+      <td><%= link_to site.name, site_path(site) %></td>
+      <td><%= site.host %></td>
+      <td><%= site.subdoamin %></td>
+      <td><%= link_to "Edit", edit_site_path(site), :class => "btn btn-primary" %></td>
+      <td><%= link_to "Delete", site_path(site), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "Are you sure?"} %></td>
+      <%end%>
+    </tr>
+  <% end %>
+</table>
+

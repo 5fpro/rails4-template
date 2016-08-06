@@ -12,7 +12,7 @@
 #
 
 class SitesController < ApplicationController
-  before_action :find_site
+  before_action :find_site, :only => [:show, :edit, :update, :destroy]
 
   def index
     @sites = Site.all("updated_at desc")
@@ -23,7 +23,7 @@ class SitesController < ApplicationController
   end
 
   def new
-    @page = Page.new
+    @site = Site.new
   end
 
   def create
