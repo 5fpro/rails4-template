@@ -1,0 +1,25 @@
+<%= form_for @site do |f| %>
+
+ <% if @site.errors.any? %>
+   <ul>
+     <% @site.errors.full_messages.each do |msg| %>
+       <li><%= msg %></li>
+     <% end %>
+   </ul>
+ <% end %>
+
+ <div>
+   <%= f.label :name, "Name" %>
+   <%= f.text_field :name %>
+ </div>
+
+ <div>
+   <%= f.label :host, "Host" %>
+   <%= f.text_field :host %>
+ </div>
+
+  <%= f.submit "Create" %>
+
+<% end %>
+
+<%= link_to "back to Sites", sites_path %>

@@ -1,0 +1,21 @@
+<%= link_to "New Site", new_site_path %>
+
+<table>
+  <thead>
+    <th>Name</th>
+    <th>Host</th>
+    <th>SubDomain</th>
+  </thead>
+  <tbody>
+    <% @sites.each do |site| %>
+      <tr>
+        <td><%= site.name %></td>
+        <td><%= site.host %></td>
+        <td><%= site.subdomain %></td>
+        <td><%= link_to "show", site_path(site) %></td>
+        <td><%= link_to "edit", edit_site_path(site) %></td>
+        <td><%= link_to "delete", site_path(site), :method => :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
