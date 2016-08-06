@@ -1,0 +1,30 @@
+<%= form_for [@site, @page] do |f| %>
+
+ <% if @page.errors.any? %>
+   <ul>
+     <% @page.errors.full_messages.each do |msg| %>
+       <li><%= msg %></li>
+     <% end %>
+   </ul>
+ <% end %>
+
+ <div>
+   <%= f.label :title, "Title" %>
+   <%= f.text_field :title %>
+ </div>
+
+ <div>
+   <%= f.label :body, "Body" %>
+   <%= f.text_field :body %>
+ </div>
+
+ <div>
+   <%= f.label :slug, "Slug" %>
+   <%= f.text_field :slug %>
+ </div>
+
+  <%= f.submit "Update" %>
+
+<% end %>
+
+<%= link_to "back to Site Show", site_path(@site) %>
