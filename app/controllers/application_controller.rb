@@ -21,4 +21,8 @@ class ApplicationController < ActionController::Base
       username == "myapp" && password == "myapp"
     end
   end
+
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
 end
