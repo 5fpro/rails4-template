@@ -57,5 +57,12 @@ RSpec.describe Api::SitesController, type: :request do
 
     end
 
+    it "should get 400 status while update site failed" do
+
+      patch "/api/sites/1", :site => {:name => nil}
+
+      expect(response.status).to be(400)
+    end
+
   end
 end
