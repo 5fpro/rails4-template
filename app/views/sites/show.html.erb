@@ -11,6 +11,7 @@
       <td><%= c.title %></td>
       <td><%= c.body %></td>
       <td><%= c.slug %></td>
+      <td><%= link_to "Show", site_page_path(@site, page.slug) %></td>
       <td><%= link_to "Edit", edit_site_page_path(@site, c), :class => "btn btn-primary"%></td>
       <td><%= link_to "Delete", site_page_path(@site, c), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "Are you sure?"} %></td>
       <%end%>
