@@ -19,6 +19,21 @@ module Api
       render :json => result.to_json, :status => status
     end
 
+    def update
+      @site = Site.find(params[:id])
+
+      if @site.update(site_params)
+        result = @site
+        status = 200
+      else
+        result = nil
+        status = 400
+      end
+
+      render :json => result.to_json, :status => status
+
+    end
+
 
     protected
 
