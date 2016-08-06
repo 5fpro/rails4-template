@@ -17,14 +17,16 @@
  </thead>
  <tbody>
    <% @pages.each do |page| %>
+   <div id = "delete-<%= page.id %>">
      <tr>
        <td><%= page.title %></td>
        <td><%= page.body %></td>
        <td><%= page.slug %></td>
        <td><%= link_to "show", site_page_path(@site, page.slug) %></td>
        <td><%= link_to "edit", edit_site_page_path(@site, page) %></td>
-       <td><%= link_to "delete", site_page_path(@site, page), method: :delete %></td>
+       <td><%= link_to "delete", site_page_path(@site, page), method: :delete, :remote => true %></td>
      </tr>
+   </div>
    <% end %>
  </tbody>
 </table>

@@ -39,7 +39,10 @@ class PagesController < ApplicationController
 
     flash[:alert] = "delete success"
 
-    redirect_to site_path(@site)
+    respond_to do |format|
+      format.html { redirect_to :back}
+      format.js
+    end
   end
 
   protected
