@@ -13,5 +13,7 @@
 
 class Page < ActiveRecord::Base
 
+  validates :slug, uniqueness: true, presence: true
+
 	belongs_to :site
 end
