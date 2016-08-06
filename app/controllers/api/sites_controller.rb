@@ -34,6 +34,15 @@ module Api
 
     end
 
+    def destroy
+      @site = Site.find(params[:id])
+
+      @site.destroy
+
+      render :json => nil, :status => 200
+
+    end
+
 
     protected
 

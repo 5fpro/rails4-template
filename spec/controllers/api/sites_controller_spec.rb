@@ -65,4 +65,19 @@ RSpec.describe Api::SitesController, type: :request do
     end
 
   end
+
+  describe "#delete" do
+    before { Site.create(:id => 1, :name => "AA", :host => "BB", :subdomain => "CC") }
+
+    it "should destroy site data" do
+
+      expect(Site.find_by(:id => 1).present?).to eq(true)
+      delete "/api/sites/1"
+
+      expect(Site.find_by(:id => 1).present?).to eq(false)
+    end
+
+
+
+  end
 end
