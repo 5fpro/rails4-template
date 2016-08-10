@@ -16,4 +16,15 @@ RSpec.describe Api::SitesController, type: :request do
       expect(response.status).to eq(200)
     end
   end
+
+  describe '#create' do
+    before(:all) do
+      @site_params = {name: "1234",host: "123", subdomain: "999db"}
+    end
+
+    it "creates record" do
+      expect{ post "/api/sites", post:  @site_params }.to change{Site.all.size}.by(1)
+    end
+
+  end
 end
