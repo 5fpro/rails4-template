@@ -36,4 +36,30 @@ RSpec.describe Api::SitesController, type: :request do
       expect(response.status).to eq(200)
     end
   end
+
+  describe "#update" do
+
+    before do 
+      @site = FactoryGirl.create(:site) 
+    end
+
+    subject do
+      params = { name: "yyy"}
+      patch "/api/sites/#{@site.id}", params
+      @site.reload
+      JSON.parse(response.body)
+    end
+
+    it { expect(subject["message"]).to eq("OK") }
+
+    it "check new subject name" do 
+      subject 
+      expect(@site.name).to eq("yyy") 
+    end
+
+    it "http status" do
+      subject
+      expect(response.status).to eq(200)
+    end
+  end
 end

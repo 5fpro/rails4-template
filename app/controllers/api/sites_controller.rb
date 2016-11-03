@@ -16,7 +16,11 @@ module Api
 
     def update
     	@site = Site.find(params[:id])
-    	@site = Site.update( name: params[:name], host: params[:host], subdomain: params[:subdomain],data: params[:data] )
+    	if @site.update( name: params[:name], host: params[:host], subdomain: params[:subdomain],data: params[:data] )
+        render json: {message: "OK"}, status: 200
+      else
+        render json: {message: "Failed!"}, status: 400
+      end
     end
 
     def delete
