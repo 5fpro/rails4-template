@@ -18,14 +18,18 @@ RSpec.describe Api::SitesController, type: :request do
   end
 
   describe "#create" do
-
     subject do
-      params = { name: "xxx", host: "123", subdomain: "subdomain", data: "data?" }
-      post "/api/sites.json", params: params
+      params = { name: "xxx", host: "23433", subdomain: "subdomain333" }
+      post "/api/sites.json", params
       JSON.parse(response.body)
     end
 
-    it { expect(subject["sites"].size).to be > 0 }
+    it { expect(subject["message"]).to eq("OK") }
+
+    it "check new subject name" do 
+      subject 
+      expect(Site.last.name).to eq("xxx") 
+    end
 
     it "http status" do
       subject

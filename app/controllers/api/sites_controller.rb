@@ -6,7 +6,7 @@ module Api
     end
 
     def create
-    	@site = Site.new( name: params[:name], host: params[:host], subdomain: params[:subdomain],data: params[:data] )
+    	@site = Site.new( name: params[:name], host: params[:host], subdomain: params[:subdomain], data: params[:data] )
       if @site.save
         render json: {message: "OK"}, status: 200
       else
