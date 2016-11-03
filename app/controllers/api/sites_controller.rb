@@ -7,7 +7,11 @@ module Api
 
     def create
     	@site = Site.new( name: params[:name], host: params[:host], subdomain: params[:subdomain],data: params[:data] )
-        @site.save
+      if @site.save
+        render json: {message: "OK"}, status: 200
+      else
+        render json: {message: "Failed!"}, status: 400
+      end
     end
 
     def update
