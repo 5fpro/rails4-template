@@ -23,9 +23,13 @@ module Api
       end
     end
 
-    def delete
+    def destroy
     	@site = Site.find(params[:id])
-    	@site.destroy
+    	if @site.destroy
+        render json: {message: "OK"}, status: 200
+      else
+        render json: {message: "Failed!"}, status: 400
+      end
     end
   end
 end
