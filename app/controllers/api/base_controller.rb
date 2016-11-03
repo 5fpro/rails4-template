@@ -1,5 +1,5 @@
 module Api
-  class BaseController < ApplicationController
+  class BaseController < ActionController::Base
     def index
       @message = "api root"
     end
