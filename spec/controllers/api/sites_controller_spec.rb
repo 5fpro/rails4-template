@@ -29,6 +29,12 @@ RSpec.describe Api::SitesController, type: :request do
       expect(response.status).to eq(400)
     end
 
+    it "should return error message in json format when failed to create" do
+      post "/api/sites", :site => { :name => '' }
+      res = JSON.parse(response.body)
+      expect(res['error']).to eq("Name can't be blank")
+    end
+
   end
 
   describe "#update" do
@@ -45,8 +51,13 @@ RSpec.describe Api::SitesController, type: :request do
 
     it "should return 400 when failed to update" do
       patch "/api/sites/1", :site => { :name => "" }
-      site = Site.find(1)
       expect(response.status).to eq(400)
+    end
+
+    it "should return error message in json format when failed to update" do
+      patch "/api/sites/1", :site => { :name => '' }
+      res = JSON.parse(response.body)
+      expect(res['error']).to eq("Name can't be blank")
     end
 
   end
