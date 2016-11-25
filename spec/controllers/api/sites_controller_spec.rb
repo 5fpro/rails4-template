@@ -16,4 +16,16 @@ RSpec.describe Api::SitesController, type: :request do
       expect(response.status).to eq(200)
     end
   end
+
+  describe "#create" do
+    it "should return 200 when successfully created" do
+      post "/api/sites", :site => { :name => 'aaa', :host => 'bbb', :subdomain => 'ccc', :data => 'ddd' }
+      expect(response.status).to eq(200)
+    end
+
+    it "should return 400 when failed to create" do
+      post "/api/sites", :site => { :name => '' }
+      expect(response.status).to eq(400)
+    end
+  end
 end
