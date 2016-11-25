@@ -23,4 +23,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :sites do
+    resources :pages
+  end
 end
