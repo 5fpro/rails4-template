@@ -141,3 +141,5 @@ gem 'sitemap_generator'
 
 # i18n
 gem "rails-i18n"
+
+gem 'rack-cors', require: 'rack/cors'
