@@ -29,6 +29,13 @@ module Api
       render :json => { :message => "site deleted!"}, :status => 200
     end
 
+    def bulk_delete
+      ids = Array(params[:sites_ids])
+      sites_to_be_deleted = ids.map{ |id| Site.find_by_id(id) }.compact
+      sites_to_be_deleted.each{ |site| site.destroy }
+      render :json => { :message => "sites deleted!"}, :status => 200
+    end
+
     private
     def params_site
       params.require(:site).permit(:name, :host, :subdomain, :data)
