@@ -1,0 +1,5 @@
+zh-TW:
+  activerecord:
+    attributes:
+      site:
+        name: "站點名稱"

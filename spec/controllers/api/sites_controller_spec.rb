@@ -16,4 +16,72 @@ RSpec.describe Api::SitesController, type: :request do
       expect(response.status).to eq(200)
     end
   end
+
+  describe "#create" do
+
+    it "should return 200 when successfully created" do
+      post "/api/sites", :site => { :name => 'aaa', :host => 'bbb', :subdomain => 'ccc', :data => 'ddd' }
+      expect(response.status).to eq(200)
+    end
+
+    it "should return 400 when failed to create" do
+      post "/api/sites", :site => { :name => '' }
+      expect(response.status).to eq(400)
+    end
+
+    it "should return error message in json format when failed to create" do
+      post "/api/sites", :site => { :name => '' }
+      res = JSON.parse(response.body)
+      expect(res['error']).to eq("Name can't be blank")
+    end
+
+  end
+
+  describe "#update" do
+
+    before do
+      Site.create( :id => 1, :name => "aaa", :host => "bbb", :subdomain => "ccc", :data => "ddd")
+    end
+
+    it "should update site name" do
+      patch "/api/sites/1", :site => { :name => "updated" }
+      site = Site.find(1)
+      expect(site.name).to eq("updated")
+    end
+
+    it "should return 400 when failed to update" do
+      patch "/api/sites/1", :site => { :name => "" }
+      expect(response.status).to eq(400)
+    end
+
+    it "should return error message in json format when failed to update" do
+      patch "/api/sites/1", :site => { :name => '' }
+      res = JSON.parse(response.body)
+      expect(res['error']).to eq("Name can't be blank")
+    end
+
+  end
+
+  describe "#destroy" do
+
+    before do
+      Site.create( :id => 1, :name => "aaa", :host => "bbb", :subdomain => "ccc", :data => "ddd")
+    end
+
+    it "should return 200 when successfully deleted" do
+      delete "/api/sites/1"
+      expect(response.status).to eq(200)
+    end
+  end
+
+  describe "#I18n" do
+
+    it "should return error message in different languages according to the first locale in http accept language" do
+      post "/api/sites", { :site => { :name => '' } }, { 'Accept-Language' => 'zh-TW,en' }
+      res = JSON.parse(response.body)
+      expect(res['error']).to eq("站點名稱 不能是空白字元")
+    end
+
+  end
+
 end
