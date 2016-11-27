@@ -73,4 +73,15 @@ RSpec.describe Api::SitesController, type: :request do
       expect(response.status).to eq(200)
     end
   end
+
+  describe "#I18n" do
+
+    it "should return error message in different languages according to the first locale in http accept language" do
+      post "/api/sites", { :site => { :name => '' } }, { 'Accept-Language' => 'zh-TW,en' }
+      res = JSON.parse(response.body)
+      expect(res['error']).to eq("站點名稱 不能是空白字元")
+    end
+
+  end
+
 end
