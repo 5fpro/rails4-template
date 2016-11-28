@@ -20,6 +20,25 @@ class Site < ActiveRecord::Base
 
   before_validation :generate_subdomain
 
+  def to_api
+    {
+      status: 200,
+      site: {
+        name: self.name,
+        subdomain: self.subdomain,
+        host: self.host
+      }
+    }
+     
+  end
+
+  def error_message
+    error_message = {
+      status: 400,
+      error_message: self.errors
+    }
+  end
+
   private
 
   def generate_subdomain
