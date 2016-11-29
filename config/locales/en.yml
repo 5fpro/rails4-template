@@ -24,3 +24,9 @@ en:
     omniauth_parse_email_fail: "omniauth_parse_email_fail"
     omniauth_already_auth: "omniauth_already_auth"
     omniauth_email_registered: "omniauth_email_registered"
+  create: "create"
+  update: "update"
+  destroy: "destroy"
+  message: 
+    success: "%{action} success"
+    failed: "%{action} failed"

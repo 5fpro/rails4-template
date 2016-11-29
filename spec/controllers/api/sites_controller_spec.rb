@@ -53,6 +53,17 @@ RSpec.describe Api::SitesController, type: :request do
 
     end
 
+    context "create failed zh-TW" do
+      
+      subject do
+        post "/api/sites", nil, { 'Accept-Language' => 'zh-TW' }
+        JSON.parse(response.body)
+      end
+
+      it { expect(subject["error_message"]["name"]).to eq(["不能是空白字元"]) }
+
+    end
+
   end
 
 
@@ -91,6 +102,18 @@ RSpec.describe Api::SitesController, type: :request do
         subject
         expect(response.status).to eq(400)
       end
+
+    end
+
+    context "update failed zh-TW" do
+      let!(:site){ FactoryGirl.create(:site) }
+      
+      subject do
+        patch "/api/sites/#{site.id}", nil, { 'Accept-Language' => 'zh-TW' }
+        JSON.parse(response.body)
+      end
+
+      it { expect(subject["error_message"]["name"]).to eq(["不能是空白字元"]) }
 
     end
 
