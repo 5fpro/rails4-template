@@ -138,4 +138,45 @@ RSpec.describe Api::SitesController, type: :request do
     
   end
 
+  describe "#bulk_update" do
+    let!(:site1){ FactoryGirl.create(:site) }
+    let!(:site2){ FactoryGirl.create(:site) }
+    let!(:site3){ FactoryGirl.create(:site) }
+    
+    context "have ids" do
+      
+      subject do
+        post "/api/sites/bulk_update", { ids: [ site1.id, site2.id ] }
+        JSON.parse(response.body)
+      end
+
+      it { expect(subject["message"]).to eq("destroy success") }
+      it { expect(subject["status"]).to eq(200) }
+
+      it "http status" do
+        subject
+        expect(response.status).to eq(200)
+      end
+
+    end
+
+    context "have not ids" do
+      
+      subject do
+        post "/api/sites/bulk_update"
+        JSON.parse(response.body)
+      end
+
+      it { expect(subject["message"]).to eq("You don't destroy any data") }
+      it { expect(subject["status"]).to eq(200) }
+
+      it "http status" do
+        subject
+        expect(response.status).to eq(200)
+      end
+      
+    end
+
+  end
+
 end

@@ -30,3 +30,4 @@ en:
   message: 
     success: "%{action} success"
     failed: "%{action} failed"
+    nothing: "You don't %{action} any data"

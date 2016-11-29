@@ -34,5 +34,16 @@ module Api
     	@site.destroy
     	render json: { status: 200, message: I18n.t("message.success", action: I18n.t(:destroy)) }
     end
+
+    def bulk_update
+      ids = Array( params[:ids] )
+      if ids && params[:ids]
+        sites = ids.map{ |i| Site.find(i) }.compact
+        sites.each{ |site| site.destroy }
+        render json: { status: 200, message: I18n.t("message.success", action: I18n.t(:destroy)) }
+      else
+        render json: { status: 200, message: I18n.t("message.nothing", action: I18n.t(:destroy)) }
+      end
+    end
   end
 end

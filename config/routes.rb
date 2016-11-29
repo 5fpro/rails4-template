@@ -15,7 +15,11 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     root to: "base#index"
-    resources :sites
+    resources :sites do
+      collection do
+        post :bulk_update
+      end
+    end
   end
 
   namespace :admin do

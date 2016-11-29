@@ -5,3 +5,4 @@ zh-TW:
   message: 
     success: "%{action}成功"
     failed: "%{action}失敗"
+    nothing: "你沒有%{action}任何資料"
