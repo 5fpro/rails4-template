@@ -1,4 +1,8 @@
 module MetaTagHelper
+  def users_count
+    User.count
+  end
+
   def set_meta(data = {})
     url = data[:url] || url_for(request.params.merge(host: Setting.host))
     data[:title] ||= default_meta[:title]
@@ -24,6 +28,11 @@ module MetaTagHelper
   end
 
   def default_meta
-    SeoSettings.defaults
+    h = SeoSettings.defaults
+    h[:icon] ||= [
+      { href: ActionController::Base.helpers.asset_path('fav-icon.png'), type: 'image/png' },
+      { href: ActionController::Base.helpers.asset_path('fav-icon.png'), type: 'image/png', rel: 'apple-touch-icon apple-touch-icon-precomposed' }
+    ]
+    h
   end
 end

@@ -54,12 +54,19 @@ RSpec.configure do |config|
   config.include DataMaker
   config.include RequestClient, type: :request
   config.include HtmlMatchers, type: :request
+  config.include ApiHelper, type: :request
 
   config.before(:each){ webmock_all! }
   config.before(:each){ sidekiq_reset! }
   config.before(:each){ Redis.current.flushdb }
 
+  config.before(:suite) { puts 'before suite (in config)' }
+  config.before(:all) { puts 'before all (in config)'}
+
   config.after { Timecop.return }
+
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :view
   # uncomment if you need specific time zone in default
   # config.before{ Time.zone = ActiveSupport::TimeZone["Taipei"] }
 end

@@ -31,6 +31,14 @@ FactoryGirl.define do
     password '12341234'
     confirmed_at Time.now
 
+    trait :invalid_email do
+      email ''
+    end
+
+    trait :invalid_password do
+      password '1234'
+    end
+
     factory :admin_user do
       admin true
     end
