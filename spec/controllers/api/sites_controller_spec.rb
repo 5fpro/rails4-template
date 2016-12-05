@@ -45,14 +45,14 @@ RSpec.describe Api::SitesController, type: :request do
       JSON.parse(response.body)
     end
 
-    it "update sucess"do
+    it "update sucess" do
       patch "/api/sites/2" , :site => {:name => "name3",:host => "host3",:subdomain => "subdomain3",:data =>"data3"}
       expect(response.status).to eq(200)
       site = Site.find(2)
       expect(site.name).to eq("name3")
     end
     
-    it "update failed"do
+    it "update failed" do
       patch "/api/sites/2" , :site => {:name => ''}
       expect(response.status).to eq(400)
       site = Site.find(2)
@@ -77,7 +77,15 @@ RSpec.describe Api::SitesController, type: :request do
       expect(Site.count).to eq(0)
     end
 
-    
   end 
 
+  describe "I18n" do
+
+    it "I18n deafault zh-TW,test en" do
+      post "/api/sites" , {:site => {:name => ''}}, { 'Accept-Language' => 'en,zh-TW' }
+      message = JSON.parse(response.body)
+      expect(message['name']).to eq(["can't be blank"])
+    end
+
+  end
 end

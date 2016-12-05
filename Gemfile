@@ -48,6 +48,9 @@ gem 'carrierwave_backgrounder'
 # soft delete
 gem 'paranoia'
 
+# different languages
+gem "rails-i18n"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 group :staging, :production do
