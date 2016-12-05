@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 
   before_action :http_auth_for_staging
   before_action :set_paper_trail_whodunnit
+  before_action :set_locale
 
   def default_url_options
     # SUPPORT: SSL
@@ -20,5 +21,13 @@ class ApplicationController < ActionController::Base
     authenticate_or_request_with_http_basic do |username, password|
       username == "myapp" && password == "myapp"
     end
+  end
+
+  def set_locale
+    if request.headers['Accept-Language'] && I18n.available_locales.include?( request.headers['Accept-Language'].to_sym )
+      session[:locale] = request.headers['Accept-Language']
+    end
+
+    I18n.locale = session[:locale] || I18n.default_locale
   end
 end

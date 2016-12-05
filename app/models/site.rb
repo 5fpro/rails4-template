@@ -20,6 +20,27 @@ class Site < ActiveRecord::Base
 
   before_validation :generate_subdomain
 
+  def to_api(*args)
+    {
+      status: 200,
+      message: I18n.t("message.success", action: args[0]),
+      site: {
+        name: self.name,
+        subdomain: self.subdomain,
+        host: self.host
+      }
+    }
+     
+  end
+
+  def error_message(*args)
+    error_message = {
+      status: 400,
+      message: I18n.t("message.failed", action: args[0]),
+      error_message: self.errors
+    }
+  end
+
   private
 
   def generate_subdomain
