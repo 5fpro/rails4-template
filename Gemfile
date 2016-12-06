@@ -60,7 +60,7 @@ group :development do
   # unicorn
   gem 'capistrano3-unicorn'
   # slack
-  gem 'slackistrano', require: false
+  gem 'slackistrano'#, require: false
 
   gem 'annotate'
   gem 'xray-rails'
