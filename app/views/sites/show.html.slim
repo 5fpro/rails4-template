@@ -1,1 +1,12 @@
-= @site.name
+p
+	= @site.name
+p
+	= @site.host
+p
+	= @site.data
+p
+	= @site.subdomain
+p
+	= link_to "edit", edit_site_path(@site)
+p
+	= link_to "destroy", site_path(@site), method: :delete
