@@ -57,11 +57,11 @@ class PagesController < ApplicationController
 	def destroy
 		@page.destroy
 		flash[:notice] = "success to delete"
-		redirect_to site_path(@site)
-
-		# respond_to do |format|
-		# 	format.js
-		# end
+		#redirect_to site_path(@site)
+		#@params[:id] = @site.id
+		respond_to do |format|
+			format.js
+		end
 		
 	end
 

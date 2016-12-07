@@ -8,8 +8,7 @@ p
 	= @site.subdomain
 p
 	= link_to "edit", edit_site_path(@site)
-p
-	= link_to "destroy", site_path(@site), method: :delete
+
 
 = form_for @page, url: @url, method: @action do |f|
 	div
@@ -24,7 +23,7 @@ p
 
 	= f.submit @submit_name
 
-table
+table id="table"
 	thead
 		tr 
 			td title
@@ -35,11 +34,11 @@ table
 	tbody
 		- @pages.each do |page|
 			- unless page.new_record?
-				tr
+				tr id="page_#{page.id}"
 					td = link_to page.title, site_page_path(@site, page)
 					td = page.slug
 					td = page.body
 					td = link_to "edit", site_path(@site, page_id: page)
-					td = link_to "destroy", site_page_path(@site, page.id), method: :delete
+					td = link_to "destroy", site_page_path(@site, page.id), method: :delete, remote: true, id: "destroy"
 
 

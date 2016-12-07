@@ -86,13 +86,16 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'byebug'
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
 group :test do
-  gem 'webmock'
+  
   gem 'test_after_commit'
   gem 'timecop'
   gem 'fuubar'
+  gem 'database_cleaner'
 end
 
 group :doc do

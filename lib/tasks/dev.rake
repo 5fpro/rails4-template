@@ -13,8 +13,8 @@ namespace :dev do
 
     5.times do |i| 
     	site =	Site.create(name: "site#{i}", host: "host#{i}")
-    	5.times do |j|
-    		site.pages.create(title: "title#{j}", slug: "slug#{j}", body: "body#{j}")
+    	for j in 1..5 do
+    		site.pages.create(title: "title#{j*5}", slug: "slug#{j*5}", body: "body#{j*5}")
     	end
     end
   end
