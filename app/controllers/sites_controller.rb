@@ -19,7 +19,18 @@ class SitesController < ApplicationController
   end
   
   def show
-  	
+  	@pages = @site.pages
+  	if params[:id] && params[:page_id]
+			@page = Page.find(params[:page_id])
+			@url = site_page_path(@site, @page)
+			@action = "patch"
+			@submit_name = "Update"
+		else
+			@page = @site.pages.build
+			@url = site_pages_path(@site)
+			@action = "post"
+			@submit_name = "Create"
+		end
   end
 
   def new

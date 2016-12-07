@@ -14,7 +14,7 @@ table
 		- @sites.each do |site|
 			tr
 				td = site.id
-				td = site.name	
+				td = link_to site.name, site_path(site)	
 				td = site.host
 				td = site.data
 				td = site.subdomain
