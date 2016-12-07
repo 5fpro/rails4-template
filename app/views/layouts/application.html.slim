@@ -6,4 +6,10 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
+  	- if flash[:notice].present?
+  		div style="color: #0f0"
+  			= flash[:notice]
+  	- if flash[:alert].present?
+  		div style="color: #f00"
+  			= flash[:alert]
     = yield
