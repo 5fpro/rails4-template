@@ -22,7 +22,7 @@ class SitesController < ApplicationController
   	@pages = @site.pages
   	if params[:id] && params[:page_id]
 			@page = Page.find(params[:page_id])
-			@url = site_page_path(@site, @page)
+			@url = site_page_path(@site, @page.title)
 			@action = "patch"
 			@submit_name = "Update"
 		else

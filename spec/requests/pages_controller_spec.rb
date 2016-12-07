@@ -56,7 +56,7 @@ RSpec.describe PagesController, type: :request do
   
   end
 
-  describe "PATCH sites/:site_id/pages/:id" do
+  describe "PATCH sites/:site_id/pages/:slug" do
   
     before(:each) { signin_user }
 
@@ -70,7 +70,7 @@ RSpec.describe PagesController, type: :request do
           }
         }
         
-        patch "/sites/#{site.id}/pages/#{page.id}", data 
+        patch "/sites/#{site.id}/pages/#{page.slug}", data 
       
       end
 
@@ -89,7 +89,7 @@ RSpec.describe PagesController, type: :request do
 
     context "update page failed" do
       
-      before(:each) { patch "/sites/#{site.id}/pages/#{page.id}", { "page" => { "title" => "" } } }
+      before(:each) { patch "/sites/#{site.id}/pages/#{page.slug}", { "page" => { "title" => "" } } }
 
       it{ expect(response).to have_http_status(302) }
       it{ expect(response).to redirect_to(site_url(site)) }
@@ -106,10 +106,10 @@ RSpec.describe PagesController, type: :request do
   
   end
 
-  describe "DELETE sites/:site_id/pages/:id" do
+  describe "DELETE sites/:site_id/pages/:slug" do
     
     before(:each) { signin_user }
-    before(:each) { delete "/sites/#{site.id}/pages/#{page.id}" }
+    before(:each) { delete "/sites/#{site.id}/pages/#{page.slug}" }
 
     context "destroy page success" do
 
@@ -127,10 +127,10 @@ RSpec.describe PagesController, type: :request do
 
   end
 
-  describe "GET sites/:site_id/pages/:id" do
+  describe "GET sites/:site_id/pages/:slug" do
     
     before(:each) { signin_user }
-    before(:each) { get "/sites/#{site.id}/pages/#{page.id}" }
+    before(:each) { get "/sites/#{site.id}/pages/#{page.slug}" }
 
     context "show site success" do
     
@@ -140,6 +140,16 @@ RSpec.describe PagesController, type: :request do
       it{ expect(response.body).to include("#{page.title}") }
 
     end 
+
+    context "show site failed" do
+
+      before(:each) { signin_user }
+      before(:each) { get "/sites/#{site.id}/pages/#{page.id}" }
+
+      it{ expect(response).to have_http_status(404) }
+      it{ expect(response.body).to include("not find page") }
+
+    end
 
   end
 

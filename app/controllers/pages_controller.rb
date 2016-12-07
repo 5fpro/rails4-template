@@ -39,7 +39,6 @@ class PagesController < ApplicationController
 	end
 
 	def update
-		@page = @site.pages.find(params[:id])
 		if @page.update(page_params)
 
 			flash[:notice] = "success to update"
@@ -76,7 +75,10 @@ class PagesController < ApplicationController
 	end
 	
 	def set_page
-		@page = Page.find(params[:id])
+		@page = Page.find_by(slug: params[:slug])
+		
+		respond_error("not find page", 404) unless @page
+
 	end
 
 	def set_site

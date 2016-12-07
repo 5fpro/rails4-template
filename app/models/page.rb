@@ -16,4 +16,8 @@ class Page < ActiveRecord::Base
   validates :slug, presence: true, uniqueness: true
 
 	belongs_to :site
+
+	def to_param
+    slug
+  end
 end

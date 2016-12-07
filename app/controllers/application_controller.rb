@@ -13,6 +13,12 @@ class ApplicationController < ActionController::Base
     {}
   end
 
+
+  def respond_error(message, status = nil)
+    status ||= 400
+    render json: { message: message }, status: status
+  end
+  
   private
 
   def http_auth_for_staging
@@ -21,4 +27,8 @@ class ApplicationController < ActionController::Base
       username == "myapp" && password == "myapp"
     end
   end
+
+
+
+
 end
