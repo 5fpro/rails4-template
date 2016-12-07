@@ -1,0 +1,15 @@
+- if @site.errors.any?
+  ul
+  - @site.errors.full_messages.each do |msg| 
+    li = msg 
+
+p
+	= f.label :name, "Name"
+	= f.text_field :name
+p
+	= f.label :host, "host"
+	= f.text_field :host
+
+p
+	= f.label :data, "data"
+	= f.text_area :data	
