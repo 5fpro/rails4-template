@@ -1,0 +1,22 @@
+= link_to "new", new_site_path
+
+table
+	thead
+		tr
+			td = "id"
+			td = "name"
+			td = "host"
+			td = "data"
+			td = "subdomain"
+			td
+			td
+	tbody
+		- @sites.each do |site|
+			tr
+				td = site.id
+				td = link_to site.name, site_path(site)	
+				td = site.host
+				td = site.data
+				td = site.subdomain
+				td = link_to "edit", edit_site_path(site)
+				td = link_to "destroy", site_path(site), method: :delete
