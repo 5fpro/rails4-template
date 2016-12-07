@@ -24,5 +24,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :sites, only: [:show, :edit]
+  resources :sites do
+    resources :pages, param: :slug
+  end
+
+
 end

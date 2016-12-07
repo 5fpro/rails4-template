@@ -1,0 +1,12 @@
+p
+	= @page.title
+p
+	= @page.slug
+p
+	= @page.body
+p
+	= link_to "edit", site_path(@site, page_id: @page.id)
+p
+	= link_to "destroy", site_page_path(@site, @page.slug), method: :delete
+p 
+	= link_to "back", site_path(@site)

@@ -10,6 +10,13 @@ namespace :dev do
   task fake: :environment do
     email = "admin@5fpro.com"
     User.find_by(email: email) || FactoryGirl.create(:user, email: email, password: "12341234", admin: true)
+
+    5.times do |i| 
+    	site =	Site.create(name: "site#{i}", host: "host#{i}")
+    	5.times do |j|
+    		site.pages.create(title: "title#{j}", slug: "slug#{j}", body: "body#{j}")
+    	end
+    end
   end
 
 end
