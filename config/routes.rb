@@ -24,9 +24,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :sites do
-    resources :pages, param: :slug
-  end
-
+  resources :sites
+  resources :pages, param: :slug, except: [:index, :show]
+  get '/:slug' => 'pages#show'
 
 end

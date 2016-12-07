@@ -22,12 +22,12 @@ class SitesController < ApplicationController
   	@pages = @site.pages
   	if params[:id] && params[:page_id]
 			@page = Page.find(params[:page_id])
-			@url = site_page_path(@site, @page.title)
+			@url = page_path(@page.slug)
 			@action = "patch"
 			@submit_name = "Update"
 		else
 			@page = @site.pages.build
-			@url = site_pages_path(@site)
+			@url = pages_path
 			@action = "post"
 			@submit_name = "Create"
 		end
@@ -38,15 +38,19 @@ class SitesController < ApplicationController
   end
 
   def create 
-  	@site = Site.new(site_params)
+  	unless request.host == 'localhost'
+			respond_error("not find site", 404)
+		else
+			@site = Site.new(site_params)
 
-  	if @site.save
-  		flash[:notice] = "success to create"
-      redirect_to site_path(@site)
-  	else
-  		flash[:alert] = "failed to create"
-      render :new
-  	end
+	  	if @site.save
+	  		flash[:notice] = "success to create"
+	      redirect_to site_path(@site)
+	  	else
+	  		flash[:alert] = "failed to create"
+	      render :new
+	  	end
+		end
   end
 
   def edit

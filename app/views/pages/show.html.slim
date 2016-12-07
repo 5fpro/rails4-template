@@ -7,6 +7,6 @@ p
 p
 	= link_to "edit", site_path(@site, page_id: @page.id)
 p
-	= link_to "destroy", site_page_path(@site, @page.slug), method: :delete
+	= link_to "destroy", page_path(@page.slug), method: :delete
 p 
 	= link_to "back", site_path(@site)

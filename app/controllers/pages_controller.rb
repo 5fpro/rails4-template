@@ -27,14 +27,11 @@ class PagesController < ApplicationController
 			flash[:notice] = "success to create"
 		else
 			flash[:alert] = "failed to create"
-			@url = site_pages_path(@site)
+			@url = pages_path(@site)
 			@action = "post"
 			@submit_name = "Create"
 		end
-		redirect_to site_path(@site)
-		# respond_to do |format|
-		# 	format.js
-		# end
+		redirect_to :root
 
 	end
 
@@ -44,19 +41,19 @@ class PagesController < ApplicationController
 			flash[:notice] = "success to update"
 			
 		else
-			@url = site_page_path(@site, @page)
+			@url = page_path(@site, @page)
 			@action = "patch"
 			@submit_name = "Update"
 			flash[:alert] = "failed to update"
 
 		end
-		redirect_to site_path(@site)
+		redirect_to :root
 	end
 
 	def destroy
 		@page.destroy
 		flash[:notice] = "success to delete"
-		redirect_to site_path(@site)
+		redirect_to :root
 
 		# respond_to do |format|
 		# 	format.js
@@ -82,6 +79,6 @@ class PagesController < ApplicationController
 	end
 
 	def set_site
-		@site = Site.find(params[:site_id])
+		@site = Site.find_by(host: request.host)
 	end
 end

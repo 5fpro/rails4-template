@@ -11,11 +11,9 @@ namespace :dev do
     email = "admin@5fpro.com"
     User.find_by(email: email) || FactoryGirl.create(:user, email: email, password: "12341234", admin: true)
 
-    5.times do |i| 
-    	site =	Site.create(name: "site#{i}", host: "host#{i}")
-    	5.times do |j|
-    		site.pages.create(title: "title#{j}", slug: "slug#{j}", body: "body#{j}")
-    	end
+    foo = Site.create(name: "foo", host: "foo.com")
+    5.times do |i|
+      foo.pages.create(title: "page#{i}", slug: "slug#{i}", body: "body#{i}")
     end
   end
 
