@@ -18,8 +18,7 @@ RSpec.describe Api::SitesController, type: :request do
   end  
 
   describe "#create" do
-    before { params = { site: {name: "www", host: "alphacamp", subdomain: "co"} }}
-
+    before(:all) { params = { site: { name: "www", host: "alphacamp", subdomain: "co" } } }
     context "create" do
 
       subject do 
@@ -52,6 +51,22 @@ RSpec.describe Api::SitesController, type: :request do
         expect(response.status).to eq(200)
       end
 
+    end
+
+    context "create failed language changed" do
+
+        subject do 
+          post "/api/sites", {:site => {name: "", host: "alphacamp", subdomain: "co" }}, { 'Accept-Language' => 'zh-TW' }
+          JSON.parse(response.body)
+        end
+
+        it {expect(subject["error_messages"]["name"]).to eq(["不能是空白字元"])}
+        it {expect(subject["status"]).to eq(404)}
+
+        it "http status" do
+          subject
+          expect(response.status).to eq(200)
+        end
     end
   end
 
@@ -89,6 +104,23 @@ RSpec.describe Api::SitesController, type: :request do
         expect(response.status).to eq(200)
       end 
     end
+
+    context "update failed language changed" do
+
+        subject do 
+          patch "/api/sites/1", {:site => {name: "", host: "alphacamp", subdomain: "co" }}, { 'Accept-Language' => 'zh-TW' }
+          JSON.parse(response.body)
+        end
+
+        it {expect(subject["error_messages"]["name"]).to eq(["不能是空白字元"])}
+        it {expect(subject["status"]).to eq(404)}
+
+        it "http status" do
+          subject
+          expect(response.status).to eq(200)
+        end
+    end
+
   end
 
   describe "#destroy" do
@@ -110,7 +142,6 @@ RSpec.describe Api::SitesController, type: :request do
       end 
     end
   end
-
 
 end
 
