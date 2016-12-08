@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
-gem 'rails', '4.2.7.1'
+gem 'rails', '4.2.6'
 
 # DB
 gem 'pg'
 gem 'activerecord-postgis-adapter'
 gem 'redis'
-gem 'redis-objects', require: 'redis/objects'
+gem 'redis-objects', require: "redis/objects"
 
 # stores
 gem 'dalli'
@@ -24,6 +24,7 @@ gem 'nested_form'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
+gem 'therubyracer', platforms: :ruby
 gem 'asset_sync'
 
 # JS plugin
@@ -36,6 +37,7 @@ gem 'sidekiq'
 gem 'sinatra', '>= 1.3.0', require: nil
 gem 'sidekiq-limit_fetch'
 gem 'sidetiq'
+gem 'whenever'
 
 # file upload
 gem 'carrierwave'
@@ -55,16 +57,27 @@ end
 group :development do
   # capistrano
   gem 'capistrano-rails'
-  gem 'capistrano-rbenv'
+  gem 'capistrano-rvm'
   gem 'capistrano-sidekiq'
   # unicorn
   gem 'capistrano3-unicorn'
   # slack
   gem 'slackistrano', require: false
 
+  gem 'guard-annotate'
   gem 'annotate'
+  gem 'awesome_print'
   gem 'xray-rails'
+  gem 'pry'
+  gem 'pry-rails'
+  gem 'pry-remote'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'guard'
   gem 'http_logger'
+  gem 'spring'
+  gem 'venus', git: "git@github.com:marsz/venus.git", branch: 'v1.0'
+  gem 'rename'
   gem 'web-console', '~> 2.0'
   gem 'rubocop'
 end
@@ -80,7 +93,7 @@ group :test do
   gem 'webmock'
   gem 'test_after_commit'
   gem 'timecop'
-  gem 'database_cleaner'
+  gem 'fuubar'
 end
 
 group :doc do

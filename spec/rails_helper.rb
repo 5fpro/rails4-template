@@ -32,7 +32,7 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  # config.use_transactional_fixtures = true  # set to database_cleaner.rb
+  config.use_transactional_fixtures = true
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
@@ -57,11 +57,10 @@ RSpec.configure do |config|
 
   config.before(:each){ webmock_all! }
   config.before(:each){ sidekiq_reset! }
-  config.before(:each){ Redis.current.flushdb }
 
   config.after { Timecop.return }
   # uncomment if you need specific time zone in default
   # config.before{ Time.zone = ActiveSupport::TimeZone["Taipei"] }
-end
 
-Dir[Rails.root.join("spec/config/**/*.rb")].each { |f| require f }
+  config.fuubar_progress_bar_options = { :format => 'Progress: <%B> %p%% %a' }
+end

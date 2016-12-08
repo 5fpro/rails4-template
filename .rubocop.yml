@@ -48,6 +48,12 @@ Style/IfUnlessModifier:
 Style/Semicolon:
   AllowAsExpressionSeparator: true
 
+Style/StringLiterals:
+  Enabled: false
+
+Style/StringLiteralsInInterpolation:
+  Enabled: false
+
 Style/ClassAndModuleChildren:
   Enabled: false
 
@@ -99,26 +105,3 @@ Metrics/AbcSize:
 
 Metrics/PerceivedComplexity:
   Max: 30
-
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
-Style/NumericPredicate:
-  Enabled: false
-
-Rails/OutputSafety:
-  Enabled: false
-
-Style/AsciiComments:
-  Enabled: false
-
-Rails/HttpPositionalArguments:
-  Enabled: false
-
-Style/StringLiterals:
-  EnforcedStyle: single_quotes
-  Enabled: true
-
-Style/StringLiteralsInInterpolation:
-  EnforcedStyle: single_quotes
-  Enabled: true

@@ -1,5 +1,6 @@
 set :deploy_to, '/home/apps/myapp'
 set :rails_env, 'staging'
+set :branch, ENV["BR"] || 'develop'
 set :ssh_options, {
   user: 'apps'
 }
@@ -13,6 +14,7 @@ server = "myapp.5fpro.com"
 role :app,                server
 role :web,                server
 role :db,                 server
+role :whenever_server,    server
 role :sidekiq_server,     server
 role :assets_sync_server, server
 

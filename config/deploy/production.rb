@@ -1,5 +1,6 @@
 set :deploy_to, '/home/apps/myapp'
 set :rails_env, 'production'
+set :branch, ENV["BR"] || 'master'
 set :ssh_options, {
   user: 'apps'
 }
@@ -21,6 +22,7 @@ shadow_server = "myapp.5fpro.com"
 role :app,             servers
 role :web,             servers + [ shadow_server ]  # for assets precompile
 role :db,              shadow_server
+role :whenever_server, shadow_server
 role :sidekiq_server,  shadow_server
 role :assets_sync_server, shadow_server
 

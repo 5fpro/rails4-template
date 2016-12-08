@@ -24,11 +24,14 @@ module MetaTagHelper
   end
 
   def default_meta
-    h = SeoSettings.defaults
-    h[:icon] ||= [
-      { href: ActionController::Base.helpers.asset_path('fav-icon.png'), type: 'image/png' },
-      { href: ActionController::Base.helpers.asset_path('fav-icon.png'), type: 'image/png', rel: 'apple-touch-icon apple-touch-icon-precomposed' }
-    ]
-    h
+    { title: "My app",
+      description: "5Fpro awesome!",
+      keywords: "5fpro",
+      fb_app_id: "12341234",
+      fb_admin_ids: "1234,123",
+      separator: " | ",
+      reverse: true,
+      og_type: "website",
+      site: "5Fpro" }
   end
 end
