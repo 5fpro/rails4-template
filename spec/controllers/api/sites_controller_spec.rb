@@ -88,4 +88,15 @@ RSpec.describe Api::SitesController, type: :request do
     end
 
   end
+
+  describe "Bulk delete"do
+    before { FactoryGirl.create_list(:site, 5) }
+    it "delete sites" do
+      sites_ids = Site.all.pluck('id').sample(3)
+      post "/api/sites/bulk_delete", :sites_ids => sites_ids
+      expect(response.status).to eq(200)
+      expect(Site.count).to eq(2)
+    end        
+  end
+
 end
