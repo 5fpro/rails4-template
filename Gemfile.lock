@@ -367,6 +367,7 @@ GEM
       activerecord (>= 3.0)
     powerpack (0.1.1)
     rack (1.6.4)
+    rack-cors (0.4.0)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -586,6 +587,7 @@ DEPENDENCIES
   paper_trail
   paranoia
   pg
+  rack-cors
   rails (= 4.2.7.1)
   ransack
   redis
@@ -617,4 +619,4 @@ DEPENDENCIES
   xray-rails
 
 BUNDLED WITH
-   1.12.5
+   1.13.6

@@ -35,5 +35,13 @@ module Myapp
 
     # disable after_commit & after_rollback of model callbacks
     config.active_record.raise_in_transactional_callbacks = true
+
+    # rack-cors
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :post, :delete, :put]
+      end
+    end
   end
 end

@@ -13,6 +13,16 @@ Rails.application.routes.draw do
   root to: "base#index"
   get '/robots.txt', to: "base#robots", defaults: { format: "text" }
 
+  # /api/users
+  namespace :api, path: '' do
+    constraints(host: 'api.localhost') do
+      resources :users
+      match '*unmatched_route', to: 'base#error_404', via: :all
+    end
+  end
+
+  resources :users
+
   namespace :admin do
     root to: "base#index"
     resources :users

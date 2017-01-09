@@ -1,4 +1,8 @@
 module MetaTagHelper
+  def users_count
+    User.count
+  end
+
   def set_meta(data = {})
     url = data[:url] || url_for(params.merge(host: Setting.host))
     data[:title] ||= default_meta[:title]
