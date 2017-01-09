@@ -23,4 +23,10 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  namespace :api do
+    root to: "base#index"
+    resources :sites
+  end
+
 end
