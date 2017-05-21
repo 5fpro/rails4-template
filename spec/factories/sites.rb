@@ -13,6 +13,8 @@
 
 FactoryGirl.define do
   factory :site do
-    name "123"
+    name 'www'
+    host '5f'
+    subdomain 'tw'
   end
 end

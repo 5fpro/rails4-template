@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 gem 'rails', '4.2.6'
 
+gem "celluloid", git: "https://github.com/celluloid/celluloid", submodules: true
 # DB
 gem 'pg'
 gem 'activerecord-postgis-adapter'
@@ -48,6 +49,9 @@ gem 'carrierwave_backgrounder'
 # soft delete
 gem 'paranoia'
 
+#language
+gem 'rails-i18n'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 group :staging, :production do
@@ -79,6 +83,7 @@ group :development do
   gem 'venus', git: "git@github.com:marsz/venus.git", branch: 'v1.0'
   gem 'web-console', '~> 2.0'
   gem 'rubocop'
+  gem 'listen'
 end
 
 group :development, :test do
