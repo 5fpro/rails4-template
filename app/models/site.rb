@@ -20,6 +20,14 @@ class Site < ActiveRecord::Base
 
   before_validation :generate_subdomain
 
+  def api_info
+    return{
+      name: self.name,
+      host: self.host,
+      subdomain: self.subdomain
+    }
+  end
+
   private
 
   def generate_subdomain
@@ -29,4 +37,6 @@ class Site < ActiveRecord::Base
     end
     self.subdomain = name
   end
+
+
 end
